@@ -1,4 +1,9 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema, Document } from "mongoose";
+
+export interface ITaskModel extends Document {
+  description: string;
+  completed: boolean;
+}
 
 const TaskSchema: Schema = new mongoose.Schema({
   description: {
@@ -14,4 +19,4 @@ const TaskSchema: Schema = new mongoose.Schema({
   },
 });
 
-export const Task = mongoose.model("Task", TaskSchema);
+export const Task = mongoose.model<ITaskModel>("Task", TaskSchema);

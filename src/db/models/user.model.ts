@@ -1,6 +1,13 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema, Document } from "mongoose";
 import { SCHEMA_VALIDATION_ERROR_MESSAGES } from "../../constants/schema-validation-error-messages.constants";
 import { customValidation } from "../../helpers/validation/schema-validation/schema-validation";
+
+export interface IUSerSchema extends Document {
+  name: string;
+  password: string;
+  email: string;
+  age?: number;
+}
 
 const UserSchema: Schema = new mongoose.Schema({
   name: {
@@ -39,4 +46,4 @@ const UserSchema: Schema = new mongoose.Schema({
   },
 });
 
-export const User = mongoose.model("User", UserSchema);
+export const User = mongoose.model<IUSerSchema>("User", UserSchema);
