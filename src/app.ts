@@ -2,7 +2,6 @@ import express from "express";
 import { connectToDB } from "./db/mongoose";
 import { userRouter } from "./routes/user.routes";
 import { taskRouter } from "./routes/task.routes";
-require("dotenv").config();
 
 const app = express();
 app.use(userRouter, taskRouter);

@@ -1,10 +1,11 @@
-import mongoose, { Schema, Mongoose } from "mongoose";
-import validator from "validator";
+import mongoose, { Mongoose } from "mongoose";
+require("dotenv").config();
 
 mongoose.set("useFindAndModify", false);
 
+console.log(process.env.DB_CONNECTION_STRING);
 export const connectToDB: Promise<Mongoose> = mongoose.connect(
-  "mongodb://127.0.0.1:27017/task-manager-api",
+  `${process.env.DB_CONNECTION_STRING}`,
   {
     useNewUrlParser: true,
     useCreateIndex: true,
