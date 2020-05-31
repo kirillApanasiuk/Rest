@@ -29,13 +29,13 @@ taskRouter.patch("/tasks/:id", async (req, res) => {
   }
 
   try {
-    const updatedTask: ITaskModel | null = await Task.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      {
-        new: true,
-      }
-    );
+    const updatedTask: ITaskModel | null = await Task.findById(req.params.id);
+    if (updatedTask) {
+      updates.forEach(
+        (fieldName) => (updatedTask[fieldName] = req.body[fieldName])
+      );
+      await updatedTask.save();
+    }
 
     if (!updatedTask) {
       res.send(404).send();
